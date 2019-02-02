@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Found Files</h1>
+	<div>
+<!-- bloque de boton de busqueda -->
+		<form action="." method="get">
+			<input id="search_box" type="text" name="search_box" placeholder="To search..." />
+			<button id="search_submit" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+		</form>
+	</div>
+	{% if searchfiles_list %}  
+    		<ul>
+		{% for file in searchfiles_list %}
+		<li>
+       		 <a href="{{ file.get_absolute_url }}">{{ file.path }}/{{ file.name }}</a>
+      		</li>
+    		{% endfor %}
+  		</ul>
+       {% else %}
+    	<p>The search performed does not yield results.</p>
+       {% endif %}       
+{% endblock %}
